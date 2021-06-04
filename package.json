@@ -1,0 +1,10 @@
+{
+  "name": "BattleDev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts":{
+    "exo1": "nodemon exercice4/index.js",
+    "resolve": "node exercice4/index.js"
+  }
+}
