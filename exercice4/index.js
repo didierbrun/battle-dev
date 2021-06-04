@@ -22,6 +22,7 @@ function resolve(){
     }
 
     console.log(`-----------------------------`)
+    console.log(`Exervice n°4`)
     console.log(`Dataset: ${dataset}`)
     console.log(`Entries: ${length}`)
     console.log(`Result: ${count * 2}`)

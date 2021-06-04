@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts":{
-    "dev": "nodemon exercice4/index.js",
-    "resolve": "node exercice4/index.js"
+    "dev": "nodemon exercice1/index.js",
+    "resolve": "node exercice1/index.js"
   }
 }
