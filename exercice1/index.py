@@ -1,6 +1,6 @@
 import sys
 #
-# Exercice n°1 - Tommy Pasqua dans l'espace
+# Exercice n°1 - Préparation minitieuse
 #
 input = map(int, open("./exercice1/datas/input{}.txt".format(sys.argv[1]), "r").read().split())
 output = int(open("./exercice1/datas/output{}.txt".format(sys.argv[1]), "r").read())

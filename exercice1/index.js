@@ -1,5 +1,5 @@
 //
-// Exercice n°1 - Tommy Pasqua dans l'espace
+// Exercice n°1 - Préparation minitieuse
 //
 const dataset = process.argv.length > 2 ? process.argv[2] : 1
 const { input, output } = require('../utils/InputReader')('./exercice1', dataset)
