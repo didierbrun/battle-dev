@@ -3,6 +3,12 @@ from operator import sub
 import math
 
 #
+# Exercice n°2 - 3, 2, 1... Décollage !
+#
+input = open("./exercice5/datas/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
+output = open("./exercice5/datas/output{}.txt".format(sys.argv[1]), "r").read()
+
+#
 # Methods utils
 #
 def max_in_range(datas, r):
@@ -15,11 +21,8 @@ def max_in_range(datas, r):
     return maxIndex
 
 #
-# Exercice n°2 - 3, 2, 1... Décollage !
+# Resolution
 #
-input = open("./exercice5/datas/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
-output = open("./exercice5/datas/output{}.txt".format(sys.argv[1]), "r").read()
-
 length, duration, locked = map(int, input[0].split())
 asteroids = list(map(int, input[1].split()))
 
