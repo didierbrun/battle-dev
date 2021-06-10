@@ -27,12 +27,15 @@ class Dijkstra:
 
         
 #
-# Resolution
+# Récupération des variables d'entrée du problème
 #
 length, duration, locked = map(int, input[0].split())
 asteroids = list(map(int, input[1].split()))
 
+# Création d'un tableau pour stocket les sommets
 sommets = []
+
+# Calcul de la première fenêtre d'aborption
 absorb = sum(asteroids[0:duration])
 
 #
@@ -53,7 +56,7 @@ for i in range(0, length):
     sommets[i].on = sommets[i + duration + locked]
 
 #
-# Caulcu du chemin le plus optimisé
+# Calcul du chemin le plus optimisé
 #
 for i in range(0, length):
     Dijkstra.visitSommet(sommets[i])
