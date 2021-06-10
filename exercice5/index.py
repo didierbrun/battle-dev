@@ -35,7 +35,7 @@ class Dijkstra:
 length, duration, locked = map(int, input[0].split())
 asteroids = list(map(int, input[1].split()))
 
-# Création d'un tableau pour stocket les sommets
+# Création d'un tableau pour stocker le graphe
 sommets = []
 
 # Calcul de la première fenêtre d'aborption
