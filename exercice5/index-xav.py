@@ -3,7 +3,7 @@ from operator import sub
 import math
 
 #
-# Exercice n°2 - 3, 2, 1... Décollage !
+# Exercice n°5 - Ceinture d'astéroïdes
 #
 input = open("./exercice5/datas/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
 output = open("./exercice5/datas/output{}.txt".format(sys.argv[1]), "r").read()
