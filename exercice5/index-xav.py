@@ -59,8 +59,6 @@ while index < length:
     total += listM[maxIndex]
     index = maxIndex + duration + locked
 
-
-
 print ("-----------------------------")
 print ("Exervice n°5")
 print ("Column M : ", listM)
