@@ -26,7 +26,7 @@ for col in range(10):
 
 print ("-----------------------------")
 print ("Exervice n°3")
-print ("Dataset: {}".format(sys.argv))
+print ("Dataset: {}".format(sys.argv[1]))
 print ("Result: {}".format(solution))
 print ("Solution: {}".format(output))
 print ("-----------------------------")

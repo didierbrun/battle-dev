@@ -15,7 +15,7 @@ for p in pseudos:
 
 print ("-----------------------------")
 print ("Exervice n°2")
-print ("Dataset: {}".format(sys.argv))
+print ("Dataset: {}".format(sys.argv[1]))
 print ("Result: {}".format(solution))
 print ("Solution: {}".format(output))
 print ("-----------------------------")

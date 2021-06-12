@@ -11,7 +11,7 @@ mass = ergolMass + distance * ergoPerUa
 
 print ("-----------------------------")
 print ("Exervice n°1")
-print ("Dataset: {}".format(sys.argv))
+print ("Dataset: {}".format(sys.argv[1]))
 print ("Result: {}".format(mass))
 print ("Solution: {}".format(output))
 print ("-----------------------------")

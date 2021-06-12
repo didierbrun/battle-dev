@@ -79,7 +79,7 @@ for i in range(0, len(sommets)):
 
 print ("-----------------------------")
 print ("Exervice n°5")
-print ("Dataset: {}".format(sys.argv))
+print ("Dataset: {}".format(sys.argv[1]))
 print ("Result: {}".format(sum(asteroids) - solution))
 print ("Solution: {}".format(output))
 print ("-----------------------------")
