@@ -1,11 +1,19 @@
+#*******
+#* Read input from STDIN
+#* Use print to output your result to STDOUT.
+#* Use sys.stderr.write() to display debugging information to STDERR
+#* ***/
 import sys
 import math
 import heapq
 
-#
-# Exercice n°6 - Expédition minière
-#
-
+input = []
+backup = []
+for line in sys.stdin:
+	input.append(line.rstrip('\n'))
+	backup.append(input[len(input) - 1])
+	
+	
 #
 # Classes
 #
@@ -17,6 +25,7 @@ class Planet:
         self.value = 0
         self.distance = math.inf
         self.bestPosition = None
+        self.ratio = 0 
         for j in range(0, pHeight):
             for i in range(0, pWidth):
                 if planet[j][i] == '*':
@@ -75,6 +84,7 @@ class Graphe:
                                 if self.distance[ty][tx] < p.distance:
                                     p.distance = self.distance[ty][tx]
                                     p.bestPosition = [ty, tx]
+                
         
         for p in self.planets:
             p.distance *= 2
@@ -134,13 +144,19 @@ class Graphe:
     
     
     def resolveSolution(self):
-        global days
+        global days, backup
+        sys.stderr.write("ICI -->\n")
+        
+        if len(self.planets) == 0:
+            sys.stderr.write("\n".join(backup))
+        
+            
+            
         p = []
         w = []
         for planet in self.planets:
             w.append(planet.distance)
             p.append(planet.value)
-
 
         t = [ [0] * days for i in range(len(p)) ]
         for i in range(len(p)):
@@ -149,13 +165,9 @@ class Graphe:
                     t[i][c] = max(t[i-1][c], t[i-1][c - w[i]] + p[i])
                 else:
                     t[i][c] = t[i - 1][c]
-
-        if len(p) == 1:
-            if w[0] <= days:
-                return p[0]
-    
         
         return t[len(p) -1][days - 1]
+        
 
     def debugMap(self, datas):
         for l in datas:
@@ -180,40 +192,32 @@ class Graphe:
                 else:
                     pattern[y] += ' '
 
-
         candidates = []
 
-        patternRow = 0
-        while (patternPlanet[patternRow][0] * pWidth == patternPlanet[patternRow]):
-            patternRow += 1
-
-        for y in range(height - pHeight + 1 + patternRow):
+        for y in range(height - pHeight + 1):
             index = 0
-            findX = pattern[y].find(patternPlanet[patternRow], index)
+            findX = pattern[y].find(patternPlanet[0], index)
             while  findX != -1:
                 index = findX + pWidth
                 candidates.append([y, findX])
-                findX = pattern[y].find(patternPlanet[patternRow], index)
+                findX = pattern[y].find(patternPlanet[0], index)
 
 
         for c in candidates:
             cy, cx = c
             count = 0
             for y in range(pHeight):
-                if pattern[y + cy - patternRow][cx : cx + pWidth] == patternPlanet[y]:
+                if pattern[y + cy][cx : cx + pWidth] == patternPlanet[y]:
                     count += 1
             if count == pHeight:
-                self.planets.append(Planet(cy - patternRow, cx))
-
-        
+                self.planets.append(Planet(cy, cx))
 
 
 
 #
 # Read datas
 #
-input = open("./exercice6/datas/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
-output = int(open("./exercice6/datas/output{}.txt".format(sys.argv[1]), "r").read())
+
 
 height, width = map(int, input.pop(0).split())
 galaxy = []
@@ -246,21 +250,6 @@ days = int(input.pop(0))
 graphe = Graphe()
 graphe.applyDiskstra(startY, startX)
 graphe.computePlanetScore()
-
-
 solution = graphe.resolveSolution()
-#graphe.debugSolution()
 
-
-
-
-
-#
-# Output
-#
-print ("-----------------------------")
-print ("Exercice n°6")
-print ("Dataset: {}".format(sys.argv[1]))
-print ("Result: {}".format(solution))
-print ("Solution: {}".format(output))
-print ("-----------------------------")
+print (solution)
