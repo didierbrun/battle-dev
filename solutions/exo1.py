@@ -5,9 +5,9 @@ import sys
 input = map(int, open("../datas/exo1/input{}.txt".format(sys.argv[1]), "r").read().split())
 output = int(open("../datas/exo1/output{}.txt".format(sys.argv[1]), "r").read())
 
-ergoPerUa = 5
-ergolMass, distance = input
-mass = ergolMass + distance * ergoPerUa
+ergoPerUa = 5                               # Ergo par unité astronomique
+ergolMass, distance = input                 # Ergo au décollage
+mass = ergolMass + distance * ergoPerUa     # La solutione est la quantité d'ergo au décollage + la distance * consommation
 
 print ("-----------------------------")
 print ("Exervice n°1")
