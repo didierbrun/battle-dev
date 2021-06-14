@@ -1,12 +1,9 @@
 import sys
-from operator import sub
-import math
-
 #
 # Exercice n°5 - Ceinture d'astéroïdes
 #
-input = open("./exercice5/datas/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
-output = open("./exercice5/datas/output{}.txt".format(sys.argv[1]), "r").read()
+input = open("../datas/exo5/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
+output = open("../datas/exo5/output{}.txt".format(sys.argv[1]), "r").read()
 
 #
 # Classes

@@ -1,10 +1,11 @@
 import sys
 import math
 import heapq
-
 #
 # Exercice n°6 - Expédition minière
 #
+input = open("../datas/exo6/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
+output = int(open("../datas/exo6/output{}.txt".format(sys.argv[1]), "r").read())
 
 #
 # Classes
@@ -22,16 +23,13 @@ class Planet:
                 if planet[j][i] == '*':
                     self.value += ores[galaxy[y + j][x + i]]
 
-
-
 class Graphe:
     def __init__(self):
         global width, height
         self.planets = []
-        self.parents = [[ None ] * width for i in range(height)]
+        self.distance = None
         self.arcs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
         self.findPlanets()
-        self.distance = None
 
     def applyDiskstra(self, y, x):
         global width, height, costs, galaxy, pWidth, pHeight
@@ -51,17 +49,12 @@ class Graphe:
                     cost = distance[cy][cx] + costs[galaxy[dy][dx]]
                     if cost < distance[dy][dx]:
                         distance[dy][dx] = cost
-                        self.parents[dy][dx] = [cy, cx]
                         heapq.heappush(nodes, (cost, [dy, dx]))
-                    
-            
             visited[cy][cx] = True
-        
         self.distance = distance
 
     def computePlanetScore(self):
         global pWith, pHeight, width, height, galaxy, structComps, costs, galaxy, startX, startY
-
         for p in self.planets:
             for y in range(0, pHeight):
                 for x in range(0, pWidth):
@@ -82,57 +75,6 @@ class Graphe:
             p.distance -= costs[galaxy[by][bx]] 
             p.distance += costs[galaxy[startY][startX]]
     
-    def debugSolution(self):
-        global width, height, pWidth, pHeight, startX, startY, galaxy, structComps, days
-        map = [[' '] * width for i in range(height)]
-        
-
-        for y in range(height):
-            map[y][0] = '#'
-            map[y][width - 1] = '1'
-        for x in range(width):
-            map[0][x] = '#'
-            map[height-1][x] = '#'
-
-
-
-        for p in self.planets:
-            for y in range(pHeight):
-                for x in range(pWidth):
-                    dx = x + p.x
-                    dy = y + p.y
-                    if galaxy[dy][dx] in structComps:
-                        map[dy][dx] = galaxy[dy][dx]
-            by, bx = p.bestPosition
-            map[by][bx] = '%'
-            while bx != startX or by != startY:
-                by, bx = self.parents[by][bx]
-                map[by][bx] = '.'
-         
-        
-        map[startY][startX] = "X"
-
-
-        res = sorted(self.planets, key = lambda p:p.ratio, reverse = True)
-
-        remain = days
-        score = 0
-
-        for i in range(30):
-            remain -= res[i].distance * 2
-            score += res[i].value
-            print (remain, score)
-            
-
-  
-
-       
-        
-
-        #for l in map:
-        #    print(''.join(l))
-    
-    
     def resolveSolution(self):
         global days
         p = []
@@ -140,7 +82,6 @@ class Graphe:
         for planet in self.planets:
             w.append(planet.distance)
             p.append(planet.value)
-
 
         t = [ [0] * days for i in range(len(p)) ]
         for i in range(len(p)):
@@ -154,12 +95,7 @@ class Graphe:
             if w[0] <= days:
                 return p[0]
     
-        
         return t[len(p) -1][days - 1]
-
-    def debugMap(self, datas):
-        for l in datas:
-            print(l)
 
     def findPlanets(self):
         global height, width, pHeight, pWidth, planet, galaxy, structComps
@@ -180,10 +116,9 @@ class Graphe:
                 else:
                     pattern[y] += ' '
 
-
         candidates = []
-
         patternRow = 0
+
         while (patternPlanet[patternRow][0] * pWidth == patternPlanet[patternRow]):
             patternRow += 1
 
@@ -195,7 +130,6 @@ class Graphe:
                 candidates.append([y, findX])
                 findX = pattern[y].find(patternPlanet[patternRow], index)
 
-
         for c in candidates:
             cy, cx = c
             count = 0
@@ -205,16 +139,9 @@ class Graphe:
             if count == pHeight:
                 self.planets.append(Planet(cy - patternRow, cx))
 
-        
-
-
-
 #
 # Read datas
 #
-input = open("./exercice6/datas/input{}.txt".format(sys.argv[1]), "r").read().splitlines()
-output = int(open("./exercice6/datas/output{}.txt".format(sys.argv[1]), "r").read())
-
 height, width = map(int, input.pop(0).split())
 galaxy = []
 for i in range(0, height):
@@ -246,14 +173,7 @@ days = int(input.pop(0))
 graphe = Graphe()
 graphe.applyDiskstra(startY, startX)
 graphe.computePlanetScore()
-
-
 solution = graphe.resolveSolution()
-#graphe.debugSolution()
-
-
-
-
 
 #
 # Output

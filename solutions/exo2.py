@@ -1,10 +1,9 @@
 import sys
-from collections import Counter
 #
 # Exercice n°2 - 3, 2, 1... Décollage !
 #
-input = open("./exercice2/datas/input{}.txt".format(sys.argv[1]), "r").read().split()
-output = open("./exercice2/datas/output{}.txt".format(sys.argv[1]), "r").read()
+input = open("../datas/exo2/input{}.txt".format(sys.argv[1]), "r").read().split()
+output = open("../datas/exo2/output{}.txt".format(sys.argv[1]), "r").read()
 
 pseudos = input[1:]
 solution = None

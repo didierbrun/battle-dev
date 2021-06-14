@@ -2,8 +2,8 @@ import sys
 #
 # Exercice n°1 - Préparation minitieuse
 #
-input = map(int, open("./exercice1/datas/input{}.txt".format(sys.argv[1]), "r").read().split())
-output = int(open("./exercice1/datas/output{}.txt".format(sys.argv[1]), "r").read())
+input = map(int, open("../datas/exo1/input{}.txt".format(sys.argv[1]), "r").read().split())
+output = int(open("../datas/exo1/output{}.txt".format(sys.argv[1]), "r").read())
 
 ergoPerUa = 5
 ergolMass, distance = input

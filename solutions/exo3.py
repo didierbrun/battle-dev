@@ -1,10 +1,9 @@
 import sys
-from collections import Counter
 #
 # Exercice n°3 - Tetris Bot 1.0
 #
-input = list(map(list, open("./exercice3/datas/input{}.txt".format(sys.argv[1]), "r").read().split()))
-output = open("./exercice3/datas/output{}.txt".format(sys.argv[1]), "r").read()
+input = list(map(list, open("../datas/exo3/input{}.txt".format(sys.argv[1]), "r").read().split()))
+output = open("../datas/exo3/output{}.txt".format(sys.argv[1]), "r").read()
 
 grid = input
 grid += [['#' for i in range(10)]]
