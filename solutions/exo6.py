@@ -34,7 +34,7 @@ class Graphe:
         self.arcs = [[0, 1], [0, -1], [1, 0], [-1, 0]]  # Direction des arcs possibles
         self.findPlanets()                              # On lance la routine pour trouver les planètes
 
-    # Algorithme de Dijkstra, permet de trouver les distance optimales depui la base, vers toutes les cases de la carte
+    # Algorithme de Dijkstra, permet de trouver les distances optimales depui la base, vers toutes les cases de la carte
     def applyDijkstra(self, y, x):                          
         global width, height, costs, galaxy, pWidth, pHeight
         distance = [[math.inf] * width for i in range(height)]
@@ -133,15 +133,16 @@ class Graphe:
         patternRow = 0
 
         # On va commencer par recherche une rangée du pattern avec au moins un signe distinctif 
-        while (patternPlanet[patternRow][0] * pWidth == patternPlanet[patternRow]):
-            patternRow += 1
+        if pWidth > 1:
+            while (patternPlanet[patternRow][0] * pWidth == patternPlanet[patternRow]):
+                patternRow += 1
 
-        # On parcours chage rangée de la galaxy 
+        # On parcours chaque rangée de la galaxy 
         for y in range(height - pHeight + 1 + patternRow):
             index = 0
             findX = pattern[y].find(patternPlanet[patternRow], index)       # On cherche la première occurence 
             while  findX != -1:                                             # Puis les suivantes, qu'on stocke dans un tableau 
-                index = findX + pWidth
+                index = findX + 1
                 candidates.append([y, findX])
                 findX = pattern[y].find(patternPlanet[patternRow], index)
 
@@ -188,7 +189,7 @@ days = int(input.pop(0))                                # Durée de la mission
 graphe = Graphe()                                       # Construction du graphe de départ
 graphe.applyDijkstra(startY, startX)                    # On applique l'algorithme de Disjkstra pour trouver les chemins
 graphe.computePlanetScore()                             # On calcul les scores de récoltes optimaux vers les planètes
-solution = graphe.resolveSolution()                     # On détermine la meilleure solution de récole en fonction de la durée de la mission
+solution = graphe.resolveSolution()                     # On détermine la meilleure solution de récolte en fonction de la durée de la mission
 
 #
 # Output
